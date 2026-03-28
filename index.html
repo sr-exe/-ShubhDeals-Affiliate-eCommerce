@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShubhDeals – Best Products, Best Prices</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --accent: #ff6b35;
+    --accent2: #ffbd59;
+    --gold: #f5c518;
+    --text: #f0f0f8;
+    --muted: #888899;
+    --border: #222233;
+    --green: #00e676;
+    --radius: 16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'DM Sans',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+ 
+  /* NOISE TEXTURE */
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events:none;
+    z-index:0;
+    opacity:0.4;
+  }
+ 
+  /* ── NAVBAR ── */
+  nav{
+    position:sticky;top:0;z-index:1000;
+    background:rgba(10,10,15,0.92);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    padding:0 2rem;
+    display:flex;align-items:center;justify-content:space-between;
+    height:68px;
+    animation:slideDown .5s ease;
+  }
+  @keyframes slideDown{from{transform:translateY(-100%);opacity:0}to{transform:none;opacity:1}}
+  .logo{
+    font-family:'Syne',sans-serif;
+    font-size:1.6rem;font-weight:800;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    letter-spacing:-1px;
+    display:flex;align-items:center;gap:.4rem;
+  }
+  .logo span{font-size:1.2rem;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.93rem;font-weight:500;transition:color .2s;}
+  .nav-links a:hover{color:var(--text);}
+  .nav-actions{display:flex;gap:1rem;align-items:center;}
+  .nav-btn{
+    background:none;border:1.5px solid var(--border);color:var(--text);
+    padding:.5rem 1rem;border-radius:50px;cursor:pointer;font-size:.9rem;
+    display:flex;align-items:center;gap:.4rem;
+    transition:all .2s;font-family:'DM Sans',sans-serif;
+  }
+  .nav-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .cart-btn{position:relative;}
+  .cart-badge{
+    position:absolute;top:-6px;right:-6px;
+    background:var(--accent);color:#fff;
+    font-size:.65rem;font-weight:700;
+    width:18px;height:18px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    animation:pop .2s ease;
+  }
+  @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+ 
+  /* ── HERO ── */
+  .hero{
+    position:relative;
+    min-height:88vh;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    padding:4rem 2rem;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255,107,53,.18) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 80% 80%, rgba(255,189,89,.10) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .hero-orbit{
+    position:absolute;
+    border:1px dashed rgba(255,107,53,.15);
+    border-radius:50%;
+    animation:spin 20s linear infinite;
+  }
+  .hero-orbit:nth-child(1){width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);}
+  .hero-orbit:nth-child(2){width:900px;height:900px;top:50%;left:50%;transform:translate(-50%,-50%);animation-duration:35s;animation-direction:reverse;}
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+  .hero-content{position:relative;z-index:1;max-width:800px;}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:.5rem;
+    background:rgba(255,107,53,.12);border:1px solid rgba(255,107,53,.3);
+    color:var(--accent);padding:.4rem 1rem;border-radius:50px;
+    font-size:.82rem;font-weight:600;letter-spacing:.05em;
+    margin-bottom:1.5rem;
+    animation:fadeUp .6s .2s both;
+  }
+  .hero h1{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(2.8rem,7vw,5.5rem);
+    font-weight:800;line-height:1.05;
+    margin-bottom:1.2rem;
+    animation:fadeUp .6s .3s both;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  }
+  .hero p{
+    font-size:1.15rem;color:var(--muted);line-height:1.7;
+    margin-bottom:2.5rem;
+    animation:fadeUp .6s .4s both;
+  }
+  .hero-cta{
+    display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+    animation:fadeUp .6s .5s both;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--accent),#ff8c42);
+    color:#fff;border:none;
+    padding:.85rem 2rem;border-radius:50px;
+    font-size:1rem;font-weight:600;cursor:pointer;
+    font-family:'DM Sans',sans-serif;
+    box-shadow:0 4px 30px rgba(255,107,53,.4);
+    transition:all .25s;display:flex;align-items:center;gap:.5rem;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(255,107,53,.5);}
+  .btn-ghost{
+    background:rgba(255,255,255,.05);
+    border:1.5px solid var(--border);
+    color:var(--text);
+    padding:.85rem 2rem;border-radius:50px;
+    font-size:1rem;font-weight:500;cursor:pointer;
+    font-family:'DM Sans',sans-serif;
+    transition:all .25s;display:flex;align-items:center;gap:.5rem;
+  }
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+ 
+  /* STATS */
+  .stats{
+    display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;
+    padding:2rem 2rem 4rem;
+    animation:fadeUp .6s .6s both;
+  }
+  .stat{text-align:center;}
+  .stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent);}
+  .stat-label{font-size:.82rem;color:var(--muted);}
+ 
+  /* ── MARQUEE BRANDS ── */
+  .marquee-wrap{
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:1rem 0;overflow:hidden;
+    background:var(--surface);
+  }
+  .marquee-inner{
+    display:flex;gap:3rem;width:max-content;
+    animation:marquee 20s linear infinite;
+  }
+  .marquee-item{
+    display:flex;align-items:center;gap:.6rem;
+    color:var(--muted);font-size:.9rem;font-weight:600;white-space:nowrap;
+  }
+  .marquee-item i{color:var(--accent);}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+ 
+  /* ── SECTIONS ── */
+  section{padding:5rem 2rem;max-width:1300px;margin:0 auto;}
+  .section-header{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    margin-bottom:3rem;flex-wrap:wrap;gap:1rem;
+  }
+  .section-label{
+    font-size:.78rem;font-weight:700;letter-spacing:.12em;
+    color:var(--accent);text-transform:uppercase;
+    display:block;margin-bottom:.4rem;
+  }
+  .section-title{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;
+    line-height:1.1;
+  }
+  .view-all{
+    background:none;border:1.5px solid var(--border);
+    color:var(--muted);padding:.5rem 1.2rem;border-radius:50px;
+    cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.88rem;
+    transition:all .2s;
+  }
+  .view-all:hover{border-color:var(--accent);color:var(--accent);}
+ 
+  /* CATEGORIES */
+  .cats{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+  .cat-pill{
+    background:var(--surface);border:1.5px solid var(--border);
+    color:var(--muted);padding:.45rem 1rem;border-radius:50px;
+    cursor:pointer;font-size:.85rem;font-weight:500;
+    transition:all .2s;
+  }
+  .cat-pill.active,.cat-pill:hover{
+    background:var(--accent);border-color:var(--accent);color:#fff;
+  }
+ 
+  /* PRODUCT GRID */
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:1.5rem;
+  }
+  .product-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    transition:all .3s;
+    position:relative;
+    animation:fadeUp .5s both;
+    cursor:pointer;
+  }
+  .product-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,107,53,.4);
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+  }
+  .product-img{
+    width:100%;aspect-ratio:1;object-fit:cover;
+    transition:transform .4s;
+    background:var(--surface);
+  }
+  .product-card:hover .product-img{transform:scale(1.04);}
+  .product-img-wrap{overflow:hidden;position:relative;}
+  .platform-badge{
+    position:absolute;top:.7rem;left:.7rem;
+    padding:.3rem .7rem;border-radius:50px;
+    font-size:.72rem;font-weight:700;letter-spacing:.05em;
+    text-transform:uppercase;
+  }
+  .badge-amazon{background:#ff9900;color:#000;}
+  .badge-flipkart{background:#2874f0;color:#fff;}
+  .badge-meesho{background:#f43397;color:#fff;}
+  .wishlist-btn{
+    position:absolute;top:.7rem;right:.7rem;
+    background:rgba(10,10,15,.7);backdrop-filter:blur(10px);
+    border:none;color:var(--muted);
+    width:34px;height:34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:all .2s;font-size:.9rem;
+  }
+  .wishlist-btn:hover,.wishlist-btn.active{color:#ff4466;}
+  .product-info{padding:1rem 1.2rem 1.2rem;}
+  .product-name{
+    font-weight:600;font-size:.95rem;line-height:1.4;
+    margin-bottom:.4rem;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .product-rating{
+    display:flex;align-items:center;gap:.3rem;
+    font-size:.82rem;color:var(--gold);margin-bottom:.6rem;
+  }
+  .product-rating span{color:var(--muted);}
+  .price-row{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;flex-wrap:wrap;}
+  .price{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--text);}
+  .price-original{font-size:.85rem;color:var(--muted);text-decoration:line-through;}
+  .discount{
+    background:rgba(0,230,118,.15);color:var(--green);
+    font-size:.72rem;font-weight:700;
+    padding:.2rem .5rem;border-radius:4px;
+  }
+  .card-actions{display:flex;gap:.6rem;}
+  .btn-cart{
+    flex:1;background:var(--accent);border:none;color:#fff;
+    padding:.6rem;border-radius:10px;
+    font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;
+    cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.4rem;
+  }
+  .btn-cart:hover{background:#ff8c42;transform:scale(1.02);}
+  .btn-buy{
+    background:rgba(255,107,53,.12);border:1.5px solid rgba(255,107,53,.3);
+    color:var(--accent);padding:.6rem .9rem;border-radius:10px;
+    cursor:pointer;font-size:.88rem;transition:all .2s;
+  }
+  .btn-buy:hover{background:var(--accent);color:#fff;}
+ 
+  /* ── DEAL BANNER ── */
+  .deal-banner{
+    background:linear-gradient(135deg,#1a0a00,#2a1200);
+    border:1px solid rgba(255,107,53,.3);
+    border-radius:20px;
+    padding:3rem;display:flex;
+    align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem;
+    position:relative;overflow:hidden;
+    margin:0 2rem;
+  }
+  .deal-banner::before{
+    content:'';position:absolute;
+    right:-100px;top:-100px;
+    width:400px;height:400px;
+    background:radial-gradient(circle,rgba(255,107,53,.2) 0%,transparent 70%);
+  }
+  .deal-text{position:relative;}
+  .deal-text h2{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;margin-bottom:.6rem;}
+  .deal-text p{color:var(--muted);font-size:1rem;}
+  .countdown{display:flex;gap:1rem;position:relative;}
+  .count-box{
+    background:rgba(255,107,53,.15);border:1px solid rgba(255,107,53,.3);
+    padding:1rem 1.5rem;border-radius:12px;text-align:center;
+  }
+  .count-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent);display:block;}
+  .count-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;}
+ 
+  /* ── CART PANEL ── */
+  .cart-overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,.6);
+    backdrop-filter:blur(4px);z-index:2000;
+    opacity:0;pointer-events:none;transition:opacity .3s;
+  }
+  .cart-overlay.open{opacity:1;pointer-events:all;}
+  .cart-panel{
+    position:fixed;right:0;top:0;bottom:0;
+    width:min(480px,100vw);
+    background:var(--surface);
+    border-left:1px solid var(--border);
+    z-index:2001;
+    transform:translateX(100%);
+    transition:transform .35s cubic-bezier(.4,0,.2,1);
+    display:flex;flex-direction:column;
+  }
+  .cart-panel.open{transform:none;}
+  .cart-header{
+    padding:1.5rem;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .cart-header h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;}
+  .close-btn{
+    background:var(--card);border:none;color:var(--text);
+    width:36px;height:36px;border-radius:50%;cursor:pointer;
+    font-size:1rem;display:flex;align-items:center;justify-content:center;
+    transition:all .2s;
+  }
+  .close-btn:hover{background:var(--border);}
+  .cart-body{flex:1;overflow-y:auto;padding:1.5rem;}
+  .cart-empty{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    height:100%;gap:1rem;color:var(--muted);
+  }
+  .cart-empty i{font-size:3rem;opacity:.3;}
+  .cart-item{
+    display:flex;gap:1rem;padding:1rem 0;
+    border-bottom:1px solid var(--border);
+    animation:fadeUp .3s both;
+  }
+  .cart-item img{width:70px;height:70px;object-fit:cover;border-radius:10px;background:var(--card);}
+  .ci-info{flex:1;}
+  .ci-name{font-weight:600;font-size:.9rem;line-height:1.3;margin-bottom:.3rem;}
+  .ci-platform{font-size:.75rem;color:var(--muted);}
+  .ci-price{font-weight:700;color:var(--accent);font-size:1rem;margin:.3rem 0;}
+  .ci-qty{display:flex;align-items:center;gap:.5rem;}
+  .qty-btn{
+    background:var(--card);border:1px solid var(--border);color:var(--text);
+    width:26px;height:26px;border-radius:6px;cursor:pointer;font-size:.85rem;
+    display:flex;align-items:center;justify-content:center;transition:all .2s;
+  }
+  .qty-btn:hover{background:var(--accent);border-color:var(--accent);}
+  .qty-num{font-weight:600;font-size:.9rem;min-width:1.5rem;text-align:center;}
+  .ci-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.85rem;padding:.3rem;transition:color .2s;}
+  .ci-remove:hover{color:#ff4466;}
+  .cart-footer{
+    padding:1.5rem;border-top:1px solid var(--border);
+  }
+  .cart-total-row{display:flex;justify-content:space-between;margin-bottom:.5rem;font-size:.9rem;}
+  .cart-total{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;margin-bottom:1rem;}
+  .checkout-btn{
+    width:100%;background:linear-gradient(135deg,var(--accent),#ff8c42);
+    border:none;color:#fff;
+    padding:1rem;border-radius:12px;
+    font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;
+    cursor:pointer;transition:all .25s;
+    display:flex;align-items:center;justify-content:center;gap:.5rem;
+  }
+  .checkout-btn:hover{box-shadow:0 8px 30px rgba(255,107,53,.5);transform:translateY(-1px);}
+ 
+  /* ── ORDER MODAL ── */
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,.7);
+    backdrop-filter:blur(6px);z-index:3000;
+    display:flex;align-items:center;justify-content:center;
+    opacity:0;pointer-events:none;transition:opacity .3s;padding:1rem;
+  }
+  .modal-overlay.open{opacity:1;pointer-events:all;}
+  .modal{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:20px;width:100%;max-width:560px;
+    max-height:90vh;overflow-y:auto;
+    transform:scale(.95);transition:transform .3s;
+  }
+  .modal-overlay.open .modal{transform:none;}
+  .modal-header{
+    padding:1.5rem;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    position:sticky;top:0;background:var(--surface);z-index:1;
+  }
+  .modal-header h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;}
+  .modal-body{padding:1.5rem;}
+  .form-group{margin-bottom:1.2rem;}
+  .form-group label{display:block;font-size:.85rem;font-weight:600;margin-bottom:.4rem;color:var(--muted);}
+  .form-group input,.form-group select,.form-group textarea{
+    width:100%;background:var(--card);border:1.5px solid var(--border);
+    color:var(--text);padding:.75rem 1rem;border-radius:10px;
+    font-family:'DM Sans',sans-serif;font-size:.93rem;
+    transition:border-color .2s;outline:none;
+  }
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .payment-options{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:.5rem;}
+  .pay-opt{
+    background:var(--card);border:2px solid var(--border);
+    border-radius:12px;padding:1rem;cursor:pointer;
+    transition:all .2s;text-align:center;
+  }
+  .pay-opt.selected{border-color:var(--accent);background:rgba(255,107,53,.1);}
+  .pay-opt i{font-size:1.5rem;display:block;margin-bottom:.4rem;}
+  .pay-opt.upi i{color:#5f259f;}
+  .pay-opt.cod i{color:var(--green);}
+  .pay-opt span{font-size:.85rem;font-weight:600;}
+  .upi-info{
+    background:rgba(95,37,159,.1);border:1px solid rgba(95,37,159,.3);
+    border-radius:10px;padding:1rem;margin-top:.8rem;
+    display:flex;align-items:center;gap:.8rem;font-size:.9rem;
+  }
+  .upi-info i{color:#5f259f;font-size:1.2rem;}
+  .order-summary{
+    background:var(--card);border-radius:12px;padding:1rem;margin:1.2rem 0;
+  }
+  .os-row{display:flex;justify-content:space-between;font-size:.88rem;padding:.3rem 0;border-bottom:1px solid var(--border);}
+  .os-row:last-child{border-bottom:none;font-weight:700;font-size:1rem;}
+  .place-order-btn{
+    width:100%;background:linear-gradient(135deg,var(--accent),#ff8c42);
+    border:none;color:#fff;
+    padding:1rem;border-radius:12px;
+    font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;
+    cursor:pointer;transition:all .25s;
+    display:flex;align-items:center;justify-content:center;gap:.6rem;
+    margin-top:.5rem;
+  }
+  .place-order-btn:hover{box-shadow:0 8px 30px rgba(255,107,53,.5);}
+  .place-order-btn:disabled{opacity:.5;cursor:not-allowed;}
+ 
+  /* SUCCESS */
+  .success-modal{text-align:center;padding:3rem 2rem;}
+  .success-icon{
+    width:80px;height:80px;background:rgba(0,230,118,.15);
+    border:2px solid var(--green);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:2rem;color:var(--green);
+    margin:0 auto 1.5rem;
+    animation:popIn .4s ease;
+  }
+  @keyframes popIn{from{transform:scale(0)}50%{transform:scale(1.1)}to{transform:scale(1)}}
+  .success-modal h3{font-family:'Syne',sans-serif;font-size:1.8rem;margin-bottom:.8rem;}
+  .success-modal p{color:var(--muted);line-height:1.6;}
+ 
+  /* ── FEATURES ── */
+  .features-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:1.5rem;
+  }
+  .feature-card{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:var(--radius);padding:1.8rem;
+    transition:all .3s;
+  }
+  .feature-card:hover{border-color:rgba(255,107,53,.3);transform:translateY(-4px);}
+  .feature-icon{
+    width:50px;height:50px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.3rem;margin-bottom:1.2rem;
+  }
+  .feature-card h4{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.5rem;}
+  .feature-card p{color:var(--muted);font-size:.88rem;line-height:1.6;}
+ 
+  /* FOOTER */
+  footer{
+    background:var(--surface);border-top:1px solid var(--border);
+    padding:4rem 2rem 2rem;
+    margin-top:4rem;
+  }
+  .footer-grid{
+    max-width:1300px;margin:0 auto;
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
+    padding-bottom:3rem;border-bottom:1px solid var(--border);
+  }
+  .footer-brand .logo{font-size:1.4rem;margin-bottom:1rem;}
+  .footer-brand p{color:var(--muted);font-size:.88rem;line-height:1.6;margin-bottom:1.2rem;}
+  .social-links{display:flex;gap:.8rem;}
+  .social-link{
+    width:36px;height:36px;background:var(--card);border:1px solid var(--border);
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:.9rem;transition:all .2s;text-decoration:none;
+  }
+  .social-link:hover{border-color:var(--accent);color:var(--accent);}
+  .footer-col h5{font-weight:700;margin-bottom:1rem;font-size:.9rem;}
+  .footer-col a{display:block;color:var(--muted);font-size:.85rem;text-decoration:none;margin-bottom:.6rem;transition:color .2s;}
+  .footer-col a:hover{color:var(--text);}
+  .footer-bottom{max-width:1300px;margin:2rem auto 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.82rem;color:var(--muted);}
+ 
+  /* TOAST */
+  .toast{
+    position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);
+    background:var(--card);border:1px solid var(--border);
+    padding:.75rem 1.5rem;border-radius:50px;
+    font-size:.9rem;font-weight:500;
+    z-index:9999;transition:transform .3s;
+    display:flex;align-items:center;gap:.5rem;
+    box-shadow:0 10px 40px rgba(0,0,0,.3);
+    white-space:nowrap;
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  .toast.success i{color:var(--green);}
+  .toast.error i{color:#ff4466;}
+ 
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .footer-grid>:first-child{grid-column:1/-1;}
+  }
+  @media(max-width:600px){
+    .hero h1{font-size:2.5rem;}
+    .deal-banner{padding:1.5rem;}
+    .deal-text h2{font-size:1.5rem;}
+    .footer-grid{grid-template-columns:1fr;}
+    .form-row{grid-template-columns:1fr;}
+    .payment-options{grid-template-columns:1fr 1fr;}
+  }
+ 
+  /* Loading skeleton */
+  .skeleton{
+    background:linear-gradient(90deg,var(--card) 25%,var(--border) 50%,var(--card) 75%);
+    background-size:200% 100%;
+    animation:shimmer 1.5s infinite;
+    border-radius:8px;
+  }
+  @keyframes shimmer{to{background-position:-200% 0}}
+ 
+  /* Product detail modal */
+  .pd-img{width:100%;max-height:320px;object-fit:cover;border-radius:12px;margin-bottom:1.5rem;}
+  .pd-platform{margin-bottom:.8rem;}
+  .pd-name{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:.8rem;line-height:1.3;}
+  .pd-desc{color:var(--muted);font-size:.93rem;line-height:1.7;margin-bottom:1.2rem;}
+  .pd-price-row{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+  .pd-price{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;}
+  .pd-actions{display:flex;gap:.8rem;}
+  .pd-actions .btn-primary,.pd-actions .btn-ghost{flex:1;justify-content:center;}
+  .affiliate-note{
+    margin-top:1rem;
+    background:rgba(255,107,53,.08);border:1px solid rgba(255,107,53,.2);
+    border-radius:10px;padding:.8rem;
+    font-size:.8rem;color:var(--muted);
+    display:flex;align-items:center;gap:.6rem;
+  }
+  .affiliate-note i{color:var(--accent);}
+</style>
+</head>
+<body>
+ 
+<!-- NAVBAR -->
+<nav>
+  <div class="logo"><i class="fa-solid fa-bolt"></i> ShubhDeals</div>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#deals">Hot Deals</a></li>
+    <li><a href="#features">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="openWishlist()"><i class="fa-regular fa-heart"></i> Wishlist</button>
+    <button class="nav-btn cart-btn" onclick="openCart()">
+      <i class="fa-solid fa-bag-shopping"></i> Cart
+      <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+    </button>
+  </div>
+</nav>
+ 
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orbit"></div>
+  <div class="hero-orbit"></div>
+  <div class="hero-content">
+    <div class="hero-tag"><i class="fa-solid fa-star"></i> Curated by Shubham Rathod</div>
+    <h1>Your <em>Favourite</em><br>Products, One Place</h1>
+    <p>Hand-picked products from Amazon, Flipkart & Meesho.<br>Best prices, genuine affiliate deals, delivered to your door.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+        <i class="fa-solid fa-fire"></i> Shop Now
+      </button>
+      <button class="btn-ghost" onclick="openCart()">
+        <i class="fa-solid fa-bag-shopping"></i> View Cart
+      </button>
+    </div>
+  </div>
+</div>
+ 
+<div class="stats">
+  <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Products</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Platforms</div></div>
+  <div class="stat"><div class="stat-num">₹0</div><div class="stat-label">Extra Fees</div></div>
+  <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Support</div></div>
+</div>
+ 
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner" id="marqueeInner"></div>
+</div>
+ 
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-header">
+    <div>
+      <span class="section-label">✦ Our Collection</span>
+      <h2 class="section-title">Featured Products</h2>
+    </div>
+    <button class="view-all" onclick="filterCat('all')">View All <i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+ 
+  <div class="cats" id="catPills"></div>
+  <div class="product-grid" id="productGrid"></div>
+</section>
+ 
+<!-- DEAL BANNER -->
+<div style="max-width:1300px;margin:0 auto;" id="deals">
+  <div class="deal-banner">
+    <div class="deal-text">
+      <div class="hero-tag" style="margin-bottom:.8rem"><i class="fa-solid fa-bolt"></i> Flash Sale</div>
+      <h2>⚡ Today's Hot Deals</h2>
+      <p>Limited time offers – grab them before they're gone!</p>
+    </div>
+    <div class="countdown" id="countdown">
+      <div class="count-box"><span class="count-num" id="ch">00</span><span class="count-label">Hours</span></div>
+      <div class="count-box"><span class="count-num" id="cm">00</span><span class="count-label">Mins</span></div>
+      <div class="count-box"><span class="count-num" id="cs">00</span><span class="count-label">Secs</span></div>
+    </div>
+  </div>
+</div>
+ 
+<!-- WHY US -->
+<section id="features">
+  <div class="section-header">
+    <div>
+      <span class="section-label">✦ Why ShubhDeals</span>
+      <h2 class="section-title">Shop with Confidence</h2>
+    </div>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(255,107,53,.15);color:var(--accent)"><i class="fa-solid fa-shield-halved"></i></div>
+      <h4>100% Genuine Links</h4>
+      <p>All products link directly to Amazon, Flipkart or Meesho – no fake stores.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(0,230,118,.15);color:var(--green)"><i class="fa-solid fa-tags"></i></div>
+      <h4>Best Prices Always</h4>
+      <p>We track prices daily and curate the best deals across all platforms.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(95,37,159,.15);color:#a370f7"><i class="fa-solid fa-bolt-lightning"></i></div>
+      <h4>UPI & COD</h4>
+      <p>Pay securely via UPI (hckdevil@axl) or cash on delivery – your choice.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(255,189,89,.15);color:var(--accent2)"><i class="fa-solid fa-headset"></i></div>
+      <h4>Personal Support</h4>
+      <p>Direct support from Shubham on Instagram @mn_shubh or call 7020989109.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section id="contact" style="padding-bottom:2rem;">
+  <div class="section-header">
+    <div>
+      <span class="section-label">✦ Get In Touch</span>
+      <h2 class="section-title">Contact Shubham</h2>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;">
+    <a href="tel:7020989109" style="text-decoration:none;">
+      <div class="feature-card" style="display:flex;align-items:center;gap:1rem;">
+        <div class="feature-icon" style="background:rgba(0,230,118,.15);color:var(--green);flex-shrink:0;margin:0"><i class="fa-solid fa-phone"></i></div>
+        <div><div style="font-size:.78rem;color:var(--muted)">Call / WhatsApp</div><div style="font-weight:700">7020989109</div></div>
+      </div>
+    </a>
+    <a href="https://instagram.com/mn_shubh" target="_blank" style="text-decoration:none;">
+      <div class="feature-card" style="display:flex;align-items:center;gap:1rem;">
+        <div class="feature-icon" style="background:rgba(225,48,108,.15);color:#e1306c;flex-shrink:0;margin:0"><i class="fa-brands fa-instagram"></i></div>
+        <div><div style="font-size:.78rem;color:var(--muted)">Instagram</div><div style="font-weight:700">@mn_shubh</div></div>
+      </div>
+    </a>
+    <a href="mailto:shubhamrathod4040@gmail.com" style="text-decoration:none;">
+      <div class="feature-card" style="display:flex;align-items:center;gap:1rem;">
+        <div class="feature-icon" style="background:rgba(255,107,53,.15);color:var(--accent);flex-shrink:0;margin:0"><i class="fa-solid fa-envelope"></i></div>
+        <div><div style="font-size:.78rem;color:var(--muted)">Email</div><div style="font-weight:700">shubhamrathod4040</div></div>
+      </div>
+    </a>
+    <div class="feature-card" style="display:flex;align-items:center;gap:1rem;">
+      <div class="feature-icon" style="background:rgba(95,37,159,.15);color:#a370f7;flex-shrink:0;margin:0"><i class="fa-solid fa-qrcode"></i></div>
+      <div><div style="font-size:.78rem;color:var(--muted)">UPI Payment</div><div style="font-weight:700">hckdevil@axl</div></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom:.8rem"><i class="fa-solid fa-bolt"></i> ShubhDeals</div>
+      <p>Curated products from Amazon, Flipkart & Meesho by Shubham Rathod. Affiliate links – you get the best price, we earn a small commission.</p>
+      <div class="social-links">
+        <a href="https://instagram.com/mn_shubh" target="_blank" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/917020989109" target="_blank" class="social-link"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="mailto:shubhamrathod4040@gmail.com" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Shop</h5>
+      <a href="#products">All Products</a>
+      <a href="#deals">Hot Deals</a>
+      <a href="#" onclick="filterCat('Electronics')">Electronics</a>
+      <a href="#" onclick="filterCat('Fashion')">Fashion</a>
+    </div>
+    <div class="footer-col">
+      <h5>Support</h5>
+      <a href="tel:7020989109">Call Us</a>
+      <a href="https://wa.me/917020989109">WhatsApp</a>
+      <a href="mailto:shubhamrathod4040@gmail.com">Email</a>
+      <a href="https://instagram.com/mn_shubh" target="_blank">Instagram</a>
+    </div>
+    <div class="footer-col">
+      <h5>Payment</h5>
+      <a href="#">UPI: hckdevil@axl</a>
+      <a href="#">Cash on Delivery</a>
+      <a href="#">Order Tracking</a>
+      <a href="#">Returns Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 ShubhDeals by Shubham Rathod. All rights reserved.</span>
+    <span>Affiliate disclosure: We earn from qualifying purchases.</span>
+  </div>
+</footer>
+ 
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg"></span></div>
+ 
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h3><i class="fa-solid fa-bag-shopping"></i> Your Cart</h3>
+    <button class="close-btn" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-total-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+    <div class="cart-total-row"><span>Delivery</span><span style="color:var(--green)">FREE</span></div>
+    <div class="cart-total" id="cartTotal">₹0</div>
+    <button class="checkout-btn" onclick="openCheckout()"><i class="fa-solid fa-lock"></i> Secure Checkout</button>
+  </div>
+</div>
+ 
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>🛒 Complete Your Order</h3>
+      <button class="close-btn" onclick="closeCheckout()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="checkoutBody"></div>
+  </div>
+</div>
+ 
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="pdModalTitle">Product Details</h3>
+      <button class="close-btn" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="pdModalBody"></div>
+  </div>
+</div>
+ 
+<!-- ADMIN MODAL -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>🔐 Admin Panel</h3>
+      <button class="close-btn" onclick="document.getElementById('adminModal').classList.remove('open')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="adminBody"></div>
+  </div>
+</div>
+ 
+<script>
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// DATABASE (localStorage)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const DB = {
+  get(k){try{return JSON.parse(localStorage.getItem(k))||null}catch{return null}},
+  set(k,v){localStorage.setItem(k,JSON.stringify(v))},
+  cart(){return this.get('sd_cart')||[]},
+  setCart(c){this.set('sd_cart',c)},
+  wishlist(){return this.get('sd_wishlist')||[]},
+  setWishlist(w){this.set('sd_wishlist',w)},
+  orders(){return this.get('sd_orders')||[]},
+  addOrder(o){const orders=this.orders();orders.unshift(o);this.set('sd_orders',orders)},
+};
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// PRODUCTS DATABASE (Add your real products here)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+const PRODUCTS = [
+  {
+    id:1, name:"Apple iPhone 15 (128GB, Black)", category:"Electronics", platform:"amazon",
+    price:59999, originalPrice:79900, rating:4.5, reviews:2341,
+    img:"https://images.unsplash.com/photo-1695048132628-bf53e6d33bb3?w=500&q=80",
+    desc:"Latest iPhone 15 with Dynamic Island, 48MP camera, and USB-C. Available in multiple colors.",
+    affiliateLink:"https://www.amazon.in/dp/B0CHX1W1XY", discount:25,
+  },
+  {
+    id:2, name:"boAt Rockerz 450 Bluetooth Headphone", category:"Electronics", platform:"flipkart",
+    price:1299, originalPrice:2990, rating:4.3, reviews:89234,
+    img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80",
+    desc:"40-hour battery, 40mm drivers, padded ear cushions for all-day comfort.",
+    affiliateLink:"https://www.flipkart.com/search?q=boat+rockerz+450", discount:57,
+  },
+  {
+    id:3, name:"Men's Casual Oversized T-Shirt", category:"Fashion", platform:"meesho",
+    price:349, originalPrice:799, rating:4.1, reviews:5120,
+    img:"https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500&q=80",
+    desc:"100% cotton premium oversized tee. Available in 10+ colors and sizes S-3XL.",
+    affiliateLink:"https://meesho.com/", discount:56,
+  },
+  {
+    id:4, name:"Samsung 55\" 4K Smart TV", category:"Electronics", platform:"flipkart",
+    price:34990, originalPrice:55900, rating:4.4, reviews:12045,
+    img:"https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500&q=80",
+    desc:"Crystal 4K UHD, HDR10+, 60Hz, built-in Alexa, multiple HDMI & USB ports.",
+    affiliateLink:"https://www.flipkart.com/search?q=samsung+4k+tv+55", discount:37,
+  },
+  {
+    id:5, name:"Lakme 9to5 Primer + Matte Lipstick", category:"Beauty", platform:"amazon",
+    price:245, originalPrice:425, rating:4.2, reviews:18900,
+    img:"https://images.unsplash.com/photo-1586495777744-4e6232bf2f9e?w=500&q=80",
+    desc:"Long-lasting matte finish with built-in primer. 100% cruelty free formula.",
+    affiliateLink:"https://www.amazon.in/s?k=lakme+9to5+lipstick", discount:42,
+  },
+  {
+    id:6, name:"Yoga Mat Anti-Slip with Bag", category:"Sports", platform:"amazon",
+    price:599, originalPrice:1299, rating:4.0, reviews:7623,
+    img:"https://images.unsplash.com/photo-1601925228195-45e1d7b41e66?w=500&q=80",
+    desc:"6mm thick premium NBR yoga mat with alignment lines and carry bag included.",
+    affiliateLink:"https://www.amazon.in/s?k=yoga+mat+anti+slip", discount:54,
+  },
+  {
+    id:7, name:"Wildcraft 30L Waterproof Backpack", category:"Bags", platform:"flipkart",
+    price:1499, originalPrice:2999, rating:4.3, reviews:4512,
+    img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80",
+    desc:"30L capacity, waterproof, laptop sleeve, multiple pockets, ergonomic straps.",
+    affiliateLink:"https://www.flipkart.com/search?q=wildcraft+backpack+30l", discount:50,
+  },
+  {
+    id:8, name:"Philips Air Fryer HD9200 (4.1L)", category:"Home", platform:"amazon",
+    price:4999, originalPrice:9999, rating:4.5, reviews:23041,
+    img:"https://images.unsplash.com/photo-1626200811038-e3e62e9e64a1?w=500&q=80",
+    desc:"Rapid Air Technology, 7 presets, 90% less fat, easy clean non-stick basket.",
+    affiliateLink:"https://www.amazon.in/s?k=philips+air+fryer+4.1l", discount:50,
+  },
+  {
+    id:9, name:"Women's Floral Kurta Set", category:"Fashion", platform:"meesho",
+    price:499, originalPrice:1200, rating:4.2, reviews:9870,
+    img:"https://images.unsplash.com/photo-1583391733956-6c78276477e2?w=500&q=80",
+    desc:"Pure cotton 3-piece kurta set with dupatta. Machine washable. Sizes XS-5XL.",
+    affiliateLink:"https://meesho.com/", discount:58,
+  },
+  {
+    id:10, name:"Mi Smart Band 8 Fitness Tracker", category:"Electronics", platform:"flipkart",
+    price:2499, originalPrice:3999, rating:4.4, reviews:54230,
+    img:"https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=500&q=80",
+    desc:"1.62\" AMOLED, SpO2, heart rate, 16-day battery, 150+ sport modes, 5ATM waterproof.",
+    affiliateLink:"https://www.flipkart.com/search?q=mi+smart+band+8", discount:37,
+  },
+  {
+    id:11, name:"Mamaearth Vitamin C Face Wash", category:"Beauty", platform:"amazon",
+    price:249, originalPrice:399, rating:4.1, reviews:34120,
+    img:"https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500&q=80",
+    desc:"With Turmeric & Vitamin C for bright skin. Natural, toxin-free formula, 100ml.",
+    affiliateLink:"https://www.amazon.in/s?k=mamaearth+vitamin+c+face+wash", discount:38,
+  },
+  {
+    id:12, name:"Prestige Induction Cooktop 2000W", category:"Home", platform:"flipkart",
+    price:1899, originalPrice:3200, rating:4.3, reviews:15670,
+    img:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&q=80",
+    desc:"2000W, feather touch controls, 8 preset menus, auto-off timer, Crystal glass plate.",
+    affiliateLink:"https://www.flipkart.com/search?q=prestige+induction+cooktop", discount:40,
+  },
+];
+ 
+const CATEGORIES = ['all',...[...new Set(PRODUCTS.map(p=>p.category))]];
+let activeCategory = 'all';
+let cart = DB.cart();
+let wishlist = DB.wishlist();
+let currentProduct = null;
+let selectedPayment = 'upi';
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARQUEE
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function buildMarquee(){
+  const items=[
+    {icon:'fa-brands fa-amazon',label:'Amazon Affiliate'},
+    {icon:'fa-solid fa-cart-shopping',label:'Flipkart Deals'},
+    {icon:'fa-solid fa-store',label:'Meesho Picks'},
+    {icon:'fa-solid fa-shield-halved',label:'100% Secure'},
+    {icon:'fa-solid fa-bolt',label:'Flash Sales'},
+    {icon:'fa-solid fa-truck-fast',label:'Fast Delivery'},
+    {icon:'fa-solid fa-star',label:'Top Rated'},
+    {icon:'fa-solid fa-indian-rupee-sign',label:'Best Prices'},
+  ];
+  const m=document.getElementById('marqueeInner');
+  const html=items.map(i=>`<div class="marquee-item"><i class="${i.icon}"></i>${i.label}</div>`).join('');
+  m.innerHTML=html+html; // duplicate for infinite scroll
+}
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CATEGORY PILLS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function buildCats(){
+  const container=document.getElementById('catPills');
+  container.innerHTML=CATEGORIES.map(c=>`
+    <div class="cat-pill ${c===activeCategory?'active':''}" onclick="filterCat('${c}')">
+      ${c==='all'?'✦ All':c}
+    </div>
+  `).join('');
+}
+ 
+function filterCat(cat){
+  activeCategory=cat;
+  buildCats();
+  renderProducts();
+  document.getElementById('products').scrollIntoView({behavior:'smooth'});
+}
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// RENDER PRODUCTS
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function renderProducts(){
+  const grid=document.getElementById('productGrid');
+  const filtered=activeCategory==='all'?PRODUCTS:PRODUCTS.filter(p=>p.category===activeCategory);
+  
+  grid.innerHTML=filtered.map((p,i)=>{
+    const inWish=wishlist.includes(p.id);
+    const stars='★'.repeat(Math.floor(p.rating))+'☆'.repeat(5-Math.floor(p.rating));
+    return `
+    <div class="product-card" style="animation-delay:${i*0.07}s" onclick="openProduct(${p.id})">
+      <div class="product-img-wrap">
+        <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400'">
+        <span class="platform-badge badge-${p.platform}">${p.platform}</span>
+        <button class="wishlist-btn ${inWish?'active':''}" onclick="event.stopPropagation();toggleWish(${p.id})">
+          <i class="fa-${inWish?'solid':'regular'} fa-heart"></i>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <div class="product-rating">
+          ${stars} <span>(${p.reviews.toLocaleString()})</span>
+        </div>
+        <div class="price-row">
+          <div class="price">₹${p.price.toLocaleString()}</div>
+          <div class="price-original">₹${p.originalPrice.toLocaleString()}</div>
+          <div class="discount">${p.discount}% off</div>
+        </div>
+        <div class="card-actions">
+          <button class="btn-cart" onclick="event.stopPropagation();addToCart(${p.id})">
+            <i class="fa-solid fa-bag-shopping"></i> Add to Cart
+          </button>
+          <button class="btn-buy" onclick="event.stopPropagation();buyNow(${p.id})" title="Buy on ${p.platform}">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// PRODUCT DETAIL
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function openProduct(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  if(!p)return;
+  currentProduct=p;
+  document.getElementById('pdModalTitle').textContent=p.name;
+  const stars='★'.repeat(Math.floor(p.rating))+'☆'.repeat(5-Math.floor(p.rating));
+  document.getElementById('pdModalBody').innerHTML=`
+    <img class="pd-img" src="${p.img}" alt="${p.name}">
+    <div class="pd-platform"><span class="platform-badge badge-${p.platform}" style="position:static;display:inline-block">${p.platform}</span></div>
+    <div class="pd-name">${p.name}</div>
+    <div class="product-rating" style="margin-bottom:.8rem">${stars} <span style="color:var(--muted)">${p.reviews.toLocaleString()} reviews</span></div>
+    <div class="pd-desc">${p.desc}</div>
+    <div class="pd-price-row">
+      <div class="price" style="font-size:2rem">₹${p.price.toLocaleString()}</div>
+      <div class="price-original">₹${p.originalPrice.toLocaleString()}</div>
+      <div class="discount">${p.discount}% off</div>
+    </div>
+    <div class="pd-actions">
+      <button class="btn-primary" onclick="addToCart(${p.id});closeProductModal()"><i class="fa-solid fa-bag-shopping"></i> Add to Cart</button>
+      <button class="btn-ghost" onclick="buyNow(${p.id})"><i class="fa-solid fa-arrow-up-right-from-square"></i> Buy on ${p.platform.charAt(0).toUpperCase()+p.platform.slice(1)}</button>
+    </div>
+    <div class="affiliate-note">
+      <i class="fa-solid fa-info-circle"></i>
+      <span>Clicking "Buy on ${p.platform}" redirects to the official platform. We earn an affiliate commission at no extra cost to you.</span>
+    </div>
+  `;
+  document.getElementById('productModal').classList.add('open');
+}
+ 
+function closeProductModal(){
+  document.getElementById('productModal').classList.remove('open');
+}
+ 
+function buyNow(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  if(p) window.open(p.affiliateLink,'_blank');
+}
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CART
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function addToCart(id){
+  const p=PRODUCTS.find(x=>x.id===id);
+  if(!p)return;
+  const idx=cart.findIndex(c=>c.id===id);
+  if(idx>-1) cart[idx].qty++;
+  else cart.push({...p,qty:1});
+  DB.setCart(cart);
+  updateCartUI();
+  showToast(`${p.name.substring(0,30)}… added to cart!`,'success');
+}
+ 
+function removeFromCart(id){
+  cart=cart.filter(c=>c.id!==id);
+  DB.setCart(cart);
+  updateCartUI();
+  renderCartPanel();
+}
+ 
+function changeQty(id,delta){
+  const idx=cart.findIndex(c=>c.id===id);
+  if(idx>-1){
+    cart[idx].qty+=delta;
+    if(cart[idx].qty<1) cart.splice(idx,1);
+  }
+  DB.setCart(cart);
+  updateCartUI();
+  renderCartPanel();
+}
+ 
+function updateCartUI(){
+  const total=cart.reduce((s,c)=>s+c.qty,0);
+  const badge=document.getElementById('cartBadge');
+  badge.textContent=total;
+  badge.style.display=total?'flex':'none';
+}
+ 
+function openCart(){
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartPanel').classList.add('open');
+  renderCartPanel();
+}
+ 
+function closeCart(){
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartPanel').classList.remove('open');
+}
+ 
+function renderCartPanel(){
+  const body=document.getElementById('cartBody');
+  const footer=document.getElementById('cartFooter');
+  if(cart.length===0){
+    body.innerHTML=`<div class="cart-empty"><i class="fa-solid fa-bag-shopping"></i><p>Your cart is empty</p><button class="btn-primary" onclick="closeCart()" style="font-size:.85rem;padding:.6rem 1.2rem">Browse Products</button></div>`;
+    footer.style.display='none';
+    return;
+  }
+  body.innerHTML=cart.map(item=>`
+    <div class="cart-item">
+      <img src="${item.img}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100'">
+      <div class="ci-info">
+        <div class="ci-name">${item.name.substring(0,50)}</div>
+        <div class="ci-platform">${item.platform}</div>
+        <div class="ci-price">₹${item.price.toLocaleString()}</div>
+        <div class="ci-qty">
+          <button class="qty-btn" onclick="changeQty(${item.id},-1)"><i class="fa-solid fa-minus"></i></button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id},1)"><i class="fa-solid fa-plus"></i></button>
+          <button class="ci-remove" onclick="removeFromCart(${item.id})"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+ 
+  const subtotal=cart.reduce((s,c)=>s+(c.price*c.qty),0);
+  document.getElementById('cartSubtotal').textContent=`₹${subtotal.toLocaleString()}`;
+  document.getElementById('cartTotal').textContent=`Total: ₹${subtotal.toLocaleString()}`;
+  footer.style.display='block';
+}
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// WISHLIST
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function toggleWish(id){
+  const idx=wishlist.indexOf(id);
+  if(idx>-1) wishlist.splice(idx,1);
+  else wishlist.push(id);
+  DB.setWishlist(wishlist);
+  renderProducts();
+  showToast(idx>-1?'Removed from wishlist':'Added to wishlist ❤️','success');
+}
+ 
+function openWishlist(){
+  filterCat('all');
+  showToast('Showing all products – ❤️ to wishlist','success');
+}
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CHECKOUT
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function openCheckout(){
+  closeCart();
+  const subtotal=cart.reduce((s,c)=>s+(c.price*c.qty),0);
+  const orderItems=cart.map(c=>`<div class="os-row"><span>${c.name.substring(0,30)}… x${c.qty}</span><span>₹${(c.price*c.qty).toLocaleString()}</span></div>`).join('');
+  
+  document.getElementById('checkoutBody').innerHTML=`
+    <div class="order-summary">
+      ${orderItems}
+      <div class="os-row"><span>Delivery</span><span style="color:var(--green)">FREE</span></div>
+      <div class="os-row"><span>Total</span><span style="color:var(--accent)">₹${subtotal.toLocaleString()}</span></div>
+    </div>
+ 
+    <div class="form-row">
+      <div class="form-group"><label>First Name *</label><input type="text" id="fname" placeholder="Rahul"></div>
+      <div class="form-group"><label>Last Name *</label><input type="text" id="lname" placeholder="Sharma"></div>
+    </div>
+    <div class="form-group"><label>Email *</label><input type="email" id="femail" placeholder="your@email.com"></div>
+    <div class="form-group"><label>Phone *</label><input type="tel" id="fphone" placeholder="9876543210" maxlength="10"></div>
+    <div class="form-group"><label>Full Address *</label><textarea id="faddress" rows="3" placeholder="House No, Street, City, State, PIN"></textarea></div>
+ 
+    <div class="form-group">
+      <label>Payment Method *</label>
+      <div class="payment-options">
+        <div class="pay-opt upi selected" id="optUpi" onclick="selectPay('upi')">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <span>UPI Payment</span>
+        </div>
+        <div class="pay-opt cod" id="optCod" onclick="selectPay('cod')">
+          <i class="fa-solid fa-money-bill-wave"></i>
+          <span>Cash on Delivery</span>
+        </div>
+      </div>
+      <div class="upi-info" id="upiInfo">
+        <i class="fa-solid fa-qrcode"></i>
+        <div>Pay to UPI: <strong>hckdevil@axl</strong><br><small>Send screenshot after payment to 7020989109</small></div>
+      </div>
+    </div>
+ 
+    <button class="place-order-btn" onclick="placeOrder(${subtotal})">
+      <i class="fa-solid fa-lock"></i> Place Order – ₹${subtotal.toLocaleString()}
+    </button>
+  `;
+  document.getElementById('checkoutModal').classList.add('open');
+  selectedPayment='upi';
+}
+ 
+function selectPay(method){
+  selectedPayment=method;
+  document.getElementById('optUpi').classList.toggle('selected',method==='upi');
+  document.getElementById('optCod').classList.toggle('selected',method==='cod');
+  document.getElementById('upiInfo').style.display=method==='upi'?'flex':'none';
+}
+ 
+function closeCheckout(){
+  document.getElementById('checkoutModal').classList.remove('open');
+}
+ 
+async function placeOrder(total){
+  const fname=document.getElementById('fname').value.trim();
+  const lname=document.getElementById('lname').value.trim();
+  const email=document.getElementById('femail').value.trim();
+  const phone=document.getElementById('fphone').value.trim();
+  const address=document.getElementById('faddress').value.trim();
+ 
+  if(!fname||!lname||!email||!phone||!address){
+    showToast('Please fill all required fields','error');return;
+  }
+  if(!/\S+@\S+\.\S+/.test(email)){showToast('Enter a valid email','error');return;}
+  if(phone.length<10){showToast('Enter a valid 10-digit phone','error');return;}
+ 
+  const btn=document.querySelector('.place-order-btn');
+  btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Processing…';
+ 
+  const orderId='SD'+Date.now();
+  const orderItems=cart.map(c=>({name:c.name,qty:c.qty,price:c.price,platform:c.platform,link:c.affiliateLink}));
+ 
+  const order={
+    id:orderId,date:new Date().toLocaleString(),
+    customer:{name:`${fname} ${lname}`,email,phone,address},
+    items:orderItems,total,payment:selectedPayment,status:'Confirmed',
+  };
+ 
+  // Save to localStorage DB
+  DB.addOrder(order);
+ 
+  // Send email notification via EmailJS (free service)
+  await sendOrderEmail(order);
+ 
+  // Open UPI app if UPI payment
+  if(selectedPayment==='upi'){
+    const upiUrl=`upi://pay?pa=hckdevil@axl&pn=ShubhDeals&am=${total}&cu=INR&tn=Order+${orderId}`;
+    window.open(upiUrl,'_blank');
+  }
+ 
+  // Clear cart
+  cart=[];DB.setCart(cart);
+  updateCartUI();
+ 
+  // Show success
+  btn.disabled=false;
+  closeCheckout();
+  showSuccess(order);
+}
+ 
+async function sendOrderEmail(order){
+  // Using EmailJS free tier
+  // Replace with your actual EmailJS service/template IDs
+  const itemsList=order.items.map(i=>`${i.name} (x${i.qty}) - ₹${(i.price*i.qty).toLocaleString()} [${i.platform}]`).join('\n');
+  const body=`
+NEW ORDER RECEIVED – ${order.id}
+━━━━━━━━━━━━━━━━━━━━━━
+Customer: ${order.customer.name}
+Email: ${order.customer.email}
+Phone: ${order.customer.phone}
+Address: ${order.customer.address}
+ 
+ITEMS:
+${itemsList}
+ 
+TOTAL: ₹${order.total.toLocaleString()}
+PAYMENT: ${order.payment.toUpperCase()}
+DATE: ${order.date}
+━━━━━━━━━━━━━━━━━━━━━━
+  `;
+  
+  try{
+    // EmailJS integration – free 200 emails/month
+    // Setup: https://www.emailjs.com/
+    // You need to add your EmailJS Public Key, Service ID, Template ID in admin settings
+    const cfg=DB.get('sd_emailjs_config');
+    if(cfg&&cfg.publicKey&&cfg.serviceId&&cfg.templateId){
+      await fetch('https://api.emailjs.com/api/v1.0/email/send',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          service_id:cfg.serviceId,template_id:cfg.templateId,user_id:cfg.publicKey,
+          template_params:{
+            to_email:'shubhamrathod4040@gmail.com',
+            order_id:order.id,
+            customer_name:order.customer.name,
+            customer_email:order.customer.email,
+            customer_phone:order.customer.phone,
+            customer_address:order.customer.address,
+            order_items:itemsList,
+            order_total:`₹${order.total.toLocaleString()}`,
+            payment_method:order.payment,
+            order_date:order.date,
+            message:body,
+          }
+        })
+      });
+    }
+  }catch(e){console.log('Email send failed (configure EmailJS in admin):', e);}
+}
+ 
+function showSuccess(order){
+  const modal=document.getElementById('checkoutModal');
+  document.getElementById('checkoutBody').innerHTML=`
+    <div class="success-modal">
+      <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+      <h3>Order Placed! 🎉</h3>
+      <p>Thank you <strong>${order.customer.name}</strong>!<br>
+      Your order <strong>#${order.id}</strong> has been confirmed.<br><br>
+      ${order.payment==='upi'?'<strong>Please complete UPI payment to hckdevil@axl</strong> and send screenshot to <strong>WhatsApp 7020989109</strong>.<br><br>':'You chose Cash on Delivery. Our team will contact you shortly.<br><br>'}
+      Order details sent to <strong>${order.customer.email}</strong>.<br>
+      For support, contact Shubham at <strong>7020989109</strong> or Instagram <strong>@mn_shubh</strong></p>
+      <br>
+      <button class="btn-primary" onclick="closeCheckout()" style="margin:0 auto">Continue Shopping</button>
+    </div>
+  `;
+  modal.classList.add('open');
+}
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// COUNTDOWN
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function startCountdown(){
+  const pad=n=>String(n).padStart(2,'0');
+  function tick(){
+    const now=new Date();
+    const end=new Date();
+    end.setHours(23,59,59,0);
+    const diff=Math.max(0,end-now);
+    const h=Math.floor(diff/3600000);
+    const m=Math.floor((diff%3600000)/60000);
+    const s=Math.floor((diff%60000)/1000);
+    document.getElementById('ch').textContent=pad(h);
+    document.getElementById('cm').textContent=pad(m);
+    document.getElementById('cs').textContent=pad(s);
+  }
+  tick();setInterval(tick,1000);
+}
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// TOAST
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
+  const icon=t.querySelector('i');
+  icon.className=type==='success'?'fa-solid fa-circle-check':'fa-solid fa-circle-xmark';
+  t.className=`toast ${type}`;
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ADMIN (secret: press Ctrl+Shift+A)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey&&e.shiftKey&&e.key==='A') openAdmin();
+});
+ 
+function openAdmin(){
+  const orders=DB.orders();
+  const cfg=DB.get('sd_emailjs_config')||{};
+  document.getElementById('adminBody').innerHTML=`
+    <div style="background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.3);border-radius:10px;padding:1rem;margin-bottom:1.5rem;">
+      <h4 style="margin-bottom:.8rem;font-family:Syne">⚙️ EmailJS Configuration</h4>
+      <p style="color:var(--muted);font-size:.82rem;margin-bottom:.8rem">Setup free email notifications at <a href="https://emailjs.com" target="_blank" style="color:var(--accent)">emailjs.com</a></p>
+      <div class="form-group"><label>Public Key</label><input type="text" id="ejPk" value="${cfg.publicKey||''}" placeholder="your_emailjs_public_key"></div>
+      <div class="form-group"><label>Service ID</label><input type="text" id="ejSid" value="${cfg.serviceId||''}" placeholder="service_xxxxxx"></div>
+      <div class="form-group"><label>Template ID</label><input type="text" id="ejTid" value="${cfg.templateId||''}" placeholder="template_xxxxxx"></div>
+      <button class="btn-primary" onclick="saveEmailJS()" style="font-size:.85rem;padding:.6rem 1.2rem"><i class="fa-solid fa-save"></i> Save Config</button>
+    </div>
+    <h4 style="font-family:Syne;margin-bottom:1rem">📦 Orders (${orders.length})</h4>
+    ${orders.length===0?'<p style="color:var(--muted)">No orders yet.</p>':orders.map(o=>`
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:.8rem;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:.4rem">
+          <strong>#${o.id}</strong>
+          <span style="color:var(--green);font-size:.8rem">${o.status}</span>
+        </div>
+        <div style="font-size:.85rem;color:var(--muted)">
+          ${o.customer.name} · ${o.customer.phone}<br>
+          ${o.items.length} item(s) · ₹${o.total.toLocaleString()} · ${o.payment.toUpperCase()}<br>
+          ${o.date}
+        </div>
+      </div>
+    `).join('')}
+  `;
+  document.getElementById('adminModal').classList.add('open');
+}
+ 
+function saveEmailJS(){
+  DB.set('sd_emailjs_config',{
+    publicKey:document.getElementById('ejPk').value.trim(),
+    serviceId:document.getElementById('ejSid').value.trim(),
+    templateId:document.getElementById('ejTid').value.trim(),
+  });
+  showToast('EmailJS config saved!','success');
+}
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// CLOSE MODALS ON OVERLAY CLICK
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+document.getElementById('checkoutModal').addEventListener('click',function(e){if(e.target===this)closeCheckout();});
+document.getElementById('productModal').addEventListener('click',function(e){if(e.target===this)closeProductModal();});
+ 
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// INIT
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+buildMarquee();
+buildCats();
+renderProducts();
+startCountdown();
+updateCartUI();
+</script>
+</body>
+</html>

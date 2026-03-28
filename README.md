@@ -171,5 +171,5 @@ This project is open-source and free to use.
 ---
 
 <p align="center">
-  ⚡ Built with passion by Shubham Rathod
+  SHUBHAM
 </p>

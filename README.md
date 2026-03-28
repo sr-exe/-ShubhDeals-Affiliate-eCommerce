@@ -82,12 +82,16 @@ It replicates a **real-world shopping experience** with cart, checkout, wishlist
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="https://via.placeholder.com/800x400?text=Homepage" width="700"/>
-  <img src="https://via.placeholder.com/800x400?text=Cart+System" width="700"/>
-  <img src="https://via.placeholder.com/800x400?text=Checkout" width="700"/>
+
+![Admin Panel](https://github.com/sr-exe/-ShubhDeals-Affiliate-eCommerce/blob/main/ui1.png?raw=true)
+
+![Home Page](https://github.com/sr-exe/-ShubhDeals-Affiliate-eCommerce/blob/main/ui2.png?raw=true)
+
+![Product Page](https://github.com/sr-exe/-ShubhDeals-Affiliate-eCommerce/blob/main/ui3.png?raw=true)
+
+![Checkout](https://github.com/sr-exe/-ShubhDeals-Affiliate-eCommerce/blob/main/ui4.png?raw=true)
 </p>
 
-> 📌 Replace with your actual screenshots
 
 ---
 

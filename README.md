@@ -171,5 +171,9 @@ This project is open-source and free to use.
 ---
 
 <p align="center">
-  SHUBHAM
+  SHUBHAM 
 </p>
+
+-----------------------------------------------------------------------------------------------------------
+
+© 2026 Shubham Rathod. All rights reserved.

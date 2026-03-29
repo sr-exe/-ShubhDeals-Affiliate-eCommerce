@@ -90,6 +90,9 @@ It replicates a **real-world shopping experience** with cart, checkout, wishlist
 ![Product Page](https://github.com/sr-exe/-ShubhDeals-Affiliate-eCommerce/blob/main/ui3.png?raw=true)
 
 ![Checkout](https://github.com/sr-exe/-ShubhDeals-Affiliate-eCommerce/blob/main/ui4.png?raw=true)
+
+![Checkout](https://github.com/sr-exe/-ShubhDeals-Affiliate-eCommerce/blob/main/ui5.png?raw=true)
+
 </p>
 
 
